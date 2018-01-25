@@ -1,5 +1,5 @@
 <resources>
-	
+
 	<!-- SkyTube theme -->
 	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
@@ -7,7 +7,6 @@
 		<item name="colorAccent">@color/colorAccent</item>
 
 		<item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat</item>
-
 		<item name="android:popupMenuStyle">@style/PopupMenu</item>
 		<item name="popupMenuStyle">@style/PopupMenu</item>
 
@@ -28,6 +27,13 @@
 	<style name="NoActionBarActivityTheme" parent="AppTheme">
 		<item name="windowActionBar">false</item>
 		<item name="windowNoTitle">true</item>
+		<item name="md_background_color">@color/colorPrimary</item>
+		<item name="md_title_color">@android:color/white</item>
+		<item name="md_content_color">@android:color/white</item>
+		<item name="md_positive_color">@android:color/white</item>
+		<item name="md_neutral_color">@android:color/white</item>
+		<item name="md_negative_color">@android:color/white</item>
+
 	</style>
 
 
@@ -41,6 +47,9 @@
 		<item name="android:layout_height">wrap_content</item>
 		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
 		<item name="android:textColor">@color/video_cell_text_main</item>
+	</style>
+
+	<style name="GridTitleTextView" parent="GridTextView">
 		<item name="android:background">@color/video_cell_background</item>
 	</style>
 
@@ -59,7 +68,7 @@
 	</style>
 
 	<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-		<item name="android:popupBackground">@color/video_cell_background</item>
+		<item name="android:popupBackground">@color/popup_menu</item>
 	</style>
 
 	<style name="VideoOptionsTextAppearanceLarge" parent="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
@@ -96,7 +105,6 @@
 	</style>
 
 
-
 	<!-- *************************************************************************************** -->
 	<!--
 	 	Video Player
@@ -108,8 +116,8 @@
 		<item name="actionBarStyle">@style/VideoPlayerActionBarTheme</item>
 	</style>
 
-	<style name="VideoPlayerActionBarTheme" parent="AppTheme" >
-		<item name="background">@color/video_player_hud</item>	<!-- Actionbar background colour -->
+	<style name="VideoPlayerActionBarTheme" parent="AppTheme">
+		<item name="background">@color/video_player_hud</item>    <!-- Actionbar background colour -->
 		<item name="displayOptions">showHome|homeAsUp|showTitle</item>
 	</style>
 
@@ -128,7 +136,7 @@
 		<item name="android:textColor">@color/comment_text</item>
 		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
 	</style>
-	
+
 	<style name="CommentInfoTextView" parent="CommentTextView">
 		<item name="android:textSize">12sp</item>
 	</style>
@@ -142,10 +150,25 @@
 	 	Channel Browser
 	-->
 
-	<style name="ChannelDetailsTextView" parent="AppTheme">
-		<item name="android:textColor">#F5F5F5FF</item>
+	<style name="ChannelSubsTextView" parent="AppTheme">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textColor">@color/channel_subs</item>
+		<item name="android:background">@color/channel_subscribers_bkg</item>
 		<item name="android:singleLine">true</item>
 		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+	</style>
+
+	<style name="ChannelAboutTextView" parent="AppTheme">
+		<item name="android:textColor">@color/channel_about</item>
+		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+	</style>
+
+	<style name="PlaylistTitleTextView" parent="ChannelSubsTextView">
+		<item name="android:paddingTop">3dp</item>
+		<item name="android:paddingBottom">3dp</item>
+		<item name="android:paddingLeft">3dp</item>
+		<item name="android:paddingRight">7dp</item>
 	</style>
 
 
@@ -162,7 +185,14 @@
 		<item name="android:layout_marginLeft">20dp</item>
 		<item name="android:layout_marginRight">20dp</item>
 		<item name="android:textColor">@color/feed_message_text</item>
-		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
+		<item name="android:textAppearance">@style/TextAppearance.AppCompat.Small</item>
+	</style>
+
+	<style name="ImportSubscriptionsButton" parent="AppTheme">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_gravity">center_horizontal</item>
+		<item name="android:layout_marginTop">20dp</item>
 	</style>
 
 
@@ -175,6 +205,27 @@
 	</style>
 
 
+	<!-- *************************************************************************************** -->
+	<!--
+	 	Downloads Tab
+	-->
+
+	<style name="NoDownloadsMsgTextView" parent="NoSubscriptionsFeedMsgTextView">
+	</style>
+
+
+	<!-- *************************************************************************************** -->
+	<!--
+	 	PermissionsActivity / Transparent Activity
+	-->
+	<style name="TransparentActivity" parent="AppTheme">
+		<item name="android:windowIsTranslucent">true</item>
+		<item name="android:windowBackground">@android:color/transparent</item>
+		<item name="android:windowContentOverlay">@null</item>
+		<item name="android:windowNoTitle">true</item>
+		<item name="android:windowIsFloating">true</item>
+		<item name="android:backgroundDimEnabled">false</item>
+	</style>
 
 
 	<!-- *************************************************************************************** -->
@@ -188,6 +239,5 @@
 		<item name="android:padding">5dp</item>
 		<item name="android:background">@drawable/loading_rectangle</item>
 	</style>
-
 
 </resources>

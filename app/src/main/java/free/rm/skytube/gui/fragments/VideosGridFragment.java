@@ -29,9 +29,10 @@ import android.widget.GridView;
 import com.bumptech.glide.Glide;
 
 import free.rm.skytube.R;
-import free.rm.skytube.businessobjects.MainActivityListener;
 import free.rm.skytube.businessobjects.VideoCategory;
-import free.rm.skytube.gui.businessobjects.VideoGridAdapter;
+import free.rm.skytube.gui.businessobjects.MainActivityListener;
+import free.rm.skytube.gui.businessobjects.adapters.VideoGridAdapter;
+import free.rm.skytube.gui.businessobjects.fragments.BaseVideosGridFragment;
 
 /**
  * A fragment that will hold a {@link GridView} full of YouTube videos.
@@ -59,7 +60,7 @@ public abstract class VideosGridFragment extends BaseVideosGridFragment {
 		progressBar = view.findViewById(R.id.loading_progress_bar);
 
 		// setup the video grid view
-		gridView = (RecyclerView) view.findViewById(R.id.grid_view);
+		gridView = view.findViewById(R.id.grid_view);
 		if (videoGridAdapter == null) {
 			videoGridAdapter = new VideoGridAdapter(getActivity());
 		} else {
@@ -68,10 +69,11 @@ public abstract class VideosGridFragment extends BaseVideosGridFragment {
 		videoGridAdapter.setProgressBar(progressBar);
 
 		if (getVideoCategory() != null)
-			videoGridAdapter.setVideoCategory(getVideoCategory());
+			videoGridAdapter.setVideoCategory(getVideoCategory(), getSearchString());
 
 		videoGridAdapter.setListener((MainActivityListener)getActivity());
 
+		gridView.setHasFixedSize(true);
 		gridView.setLayoutManager(new GridLayoutManager(getActivity(), getResources().getInteger(R.integer.video_grid_num_columns)));
 		gridView.setAdapter(videoGridAdapter);
 
@@ -100,14 +102,15 @@ public abstract class VideosGridFragment extends BaseVideosGridFragment {
 
 
 	/**
-	 * @return The fragment/tab name/title.
+	 * @return Returns the search string used when setting the video category.  (Can be used to
+	 * set the channel ID in case of VideoCategory.CHANNEL_VIDEOS).
 	 */
-	protected abstract String getFragmentName();
-
+	protected String getSearchString() {
+		return null;
+	}
 
 	/**
-	 * Will be called when the user selects this fragment/tab.
+	 * @return The fragment/tab name/title.
 	 */
-	protected abstract void onFragmentSelected();
-
+	public abstract String getFragmentName();
 }
